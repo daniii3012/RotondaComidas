@@ -9,6 +9,10 @@ import { UserComponent } from './pages/user/user.component';
 import { LoginComponent } from './pages/user/login/login.component';
 import { RegisterComponent } from './pages/user/register/register.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AdminRestaurantComponent } from './pages/admin/admin-restaurant/admin-restaurant.component';
+import { AdminIngredientComponent } from './pages/admin/admin-ingredient/admin-ingredient.component';
+import { AdminProductComponent } from './pages/admin/admin-product/admin-product.component';
+import { AdminMenuComponent } from './pages/admin/admin-menu/admin-menu.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { AdminComponent } from './pages/admin/admin.component';
     UserComponent,
     LoginComponent,
     RegisterComponent,
-    AdminComponent
+    AdminComponent,
+    AdminRestaurantComponent,
+    AdminIngredientComponent,
+    AdminProductComponent,
+    AdminMenuComponent
   ],
   imports: [
     BrowserModule,
