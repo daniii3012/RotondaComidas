@@ -8,10 +8,102 @@
                         <button type="button" routerLink="/admin" class="btn btn-secondary">Regresar</button>
                     </p>
                     <p class="card-text">
-                        <button type="button" routerLink="/admin" class="btn btn-secondary">Añadir Ingrediente</button>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addIngredient">Añadir Ingrediente</button>
                     </p>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row m-2">
+        <div *ngFor="let ingredient of ingredientes.ingredientes" class="col-4">
+            <div class="card shadow-sm border-0 m-2">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ ingredient.nombre }} <button type="button" class="btn btn-warning" data-bs-toggle="modal" attr.data-bs-target="#edit{{ ingredient.id }}"><i class="bi-pencil-fill"></i></button></h5>
+                    <p class="card-text">
+                        {{ ingredient.tipo }}
+                        <br>
+                        {{ ingredient.costoUnitario }}
+                        <br>
+                        {{ ingredient.plato }}
+                        <br>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Modal para editar un producto -->
+
+            <div class="modal fade" id="edit{{ ingredient.id }}" tabindex="-1" aria-labelledby="editProduct" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title fw-bold" id="editProduct">Editando Ingrediente</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="mb-3 text-start">
+                                <label for="ingredientName" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="ingredientName" [(ngModel)]="ingredient.nombre">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="ingredientType" class="form-label">Restaurante</label>
+                                <input type="text" class="form-control" id="ingredientType" [(ngModel)]="ingredient.tipo">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="ingredientCost" class="form-label">Tipo</label>
+                                <input type="number" class="form-control" id="ingredientCost" [(ngModel)]="ingredient.costoUnitario">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="ingredientDish" class="form-label">Tipo</label>
+                                <input type="text" class="form-control" id="ingredientDish" [(ngModel)]="ingredient.plato">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-->
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para añadir un nuevo producto -->
+        <div class="modal fade" id="addIngredient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title fw-bold" id="editProduct">Añadir nuevo producto</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3 text-start">
+                            <label for="ingredientName" class="form-label">Nombre del producto</label>
+                            <input type="text" class="form-control" id="ingredientName" [(ngModel)]="nombre">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="ingredientType" class="form-label">Restaurante</label>
+                            <input type="text" class="form-control" id="ingredientType" [(ngModel)]="tipo">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="ingredientCost" class="form-label">Tipo</label>
+                            <input type="number" class="form-control" id="ingredientCost" [(ngModel)]="costoUnitario">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="ingredientDish" class="form-label">Tipo</label>
+                            <input type="text" class="form-control" id="ingredientDish" [(ngModel)]="plato">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button (click)="reset()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Añadir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

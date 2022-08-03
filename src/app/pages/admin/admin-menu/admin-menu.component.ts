@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenusService } from 'src/app/services/admin/menus/menus.service';
 
 @Component({
   selector: 'app-admin-menu',
@@ -7,9 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminMenuComponent implements OnInit {
 
-  constructor() { }
+  menus: any;
+
+  nombrePlato: string = "";
+  restaurante: string = "";
+  tipo: string = "";
+
+  constructor(
+    private menusService: MenusService
+  ) { }
 
   ngOnInit(): void {
+    this.getMenus();
+  }
+
+  getMenus() {
+    this.menusService.getMenus().subscribe(
+      data => {
+        this.menus = data;
+        console.log(this.menus);
+      }
+    )
+  }
+
+  // Funcion temporal
+  reset() {
+    this.nombrePlato = "";
+    this.restaurante = "";
+    this.tipo = "";
   }
 
 }

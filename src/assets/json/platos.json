@@ -1,0 +1,40 @@
+{
+    "platos":[
+        {
+            "id":1,
+            "nombrePlato":"Plato 1",
+            "restaurante":"Restaurante 1",
+            "tipo":"plato"
+        },
+        {
+            "id":2,
+            "nombrePlato":"Plato 2",
+            "restaurante":"Restaurante 1",
+            "tipo":"plato"
+        },
+        {
+            "id":3,
+            "nombrePlato":"Plato 1",
+            "restaurante":"Restaurante 2",
+            "tipo":"plato"
+        },
+        {
+            "id":4,
+            "nombrePlato":"Plato 1",
+            "restaurante":"Restaurante 4",
+            "tipo":"plato"
+        },
+        {
+            "id":5,
+            "nombrePlato":"Plato 2",
+            "restaurante":"Restaurante 4",
+            "tipo":"plato"
+        },
+        {
+            "id":6,
+            "nombrePlato":"Plato 1",
+            "restaurante":"Restaurante 5",
+            "tipo":"plato"
+        }
+    ]
+}

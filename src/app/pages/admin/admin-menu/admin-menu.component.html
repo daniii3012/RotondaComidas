@@ -8,10 +8,92 @@
                         <button type="button" routerLink="/admin" class="btn btn-secondary">Regresar</button>
                     </p>
                     <p class="card-text">
-                        <button type="button" routerLink="/admin" class="btn btn-secondary">Añadir Menú</button>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addMenu">Añadir Menú</button>
                     </p>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row m-2">
+        <div *ngFor="let menu of menus.platos" class="col-4">
+            <div class="card shadow-sm border-0 m-2">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ menu.nombrePlato }} <button type="button" class="btn btn-warning" data-bs-toggle="modal" attr.data-bs-target="#edit{{ menu.id }}"><i class="bi-pencil-fill"></i></button></h5>
+                    <p class="card-text">
+                        {{ menu.restaurante }}
+                        <br>
+                        {{ menu.tipo }}
+                        <br>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Modal para editar un producto -->
+
+            <div class="modal fade" id="edit{{ menu.id }}" tabindex="-1" aria-labelledby="editProduct" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title fw-bold" id="editProduct">Editando Producto</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="mb-3 text-start">
+                                <label for="menuName" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="menuName" [(ngModel)]="menu.nombrePlato">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="restaurant" class="form-label">Restaurante</label>
+                                <input type="text" class="form-control" id="restaurant" [(ngModel)]="menu.restaurante">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="typeMenu" class="form-label">Tipo</label>
+                                <input type="text" class="form-control" id="typeMenu" [(ngModel)]="menu.tipo">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-->
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para añadir un nuevo producto -->
+        <div class="modal fade" id="addMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title fw-bold" id="editProduct">Añadir nuevo producto</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3 text-start">
+                            <label for="menuName" class="form-label">Nombre del producto</label>
+                            <input type="text" class="form-control" id="menuName" [(ngModel)]="nombrePlato">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="restaurant" class="form-label">Restaurante</label>
+                            <input type="text" class="form-control" id="restaurant" [(ngModel)]="restaurante">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="typeMenu" class="form-label">Tipo</label>
+                            <input type="text" class="form-control" id="typeMenu" [(ngModel)]="tipo">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button (click)="reset()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Añadir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

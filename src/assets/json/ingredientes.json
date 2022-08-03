@@ -1,0 +1,46 @@
+{
+    "ingredientes":[
+        {
+            "id":1,
+            "nombre":"Ingrediente 1",
+            "tipo":"tipo 1",
+            "costoUnitario":5000,
+            "plato":"Plato 1"
+        },
+        {
+            "id":2,
+            "nombre":"Ingrediente 2",
+            "tipo":"tipo 2",
+            "costoUnitario":4000,
+            "plato":"Plato 1"
+        },
+        {
+            "id":3,
+            "nombre":"Ingrediente 3",
+            "tipo":"tipo 3",
+            "costoUnitario":9000,
+            "plato":"Plato 1"
+        },
+        {
+            "id":4,
+            "nombre":"Ingrediente 1",
+            "tipo":"tipo 1",
+            "costoUnitario":6000,
+            "plato":"Plato 2"
+        },
+        {
+            "id":5,
+            "nombre":"Ingrediente 1",
+            "tipo":"tipo 1",
+            "costoUnitario":3000,
+            "plato":"Plato 2"
+        },
+        {
+            "id":6,
+            "nombre":"Ingrediente 1",
+            "tipo":"tipo 1",
+            "costoUnitario":2000,
+            "plato":"Plato 2"
+        }
+    ]
+}
