@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-custom">
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="/home">RotondaComidas</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,20 +15,26 @@
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-primary" type="submit"><i class="bi-search"></i></button>
+                <button class="btn btn-light" type="submit"><i class="bi-search"></i></button>
             </form>
             <ul class="navbar-nav ms-5">
                 <a class="nav-link" routerLink="/cart">
-                    <button type="button" class="btn btn-primary position-relative">
+                    <button type="button" class="btn btn-light position-relative">
                         <i class="bi-cart2 me-2"></i>Carrito
-                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-primary rounded-circle">
                             <span class="visually-hidden">New alerts</span>
                         </span>
                     </button>
                 </a>
                 <a class="nav-link">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <button *ngIf="!auth.isLogged()" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#loginModal">
                         Iniciar Sesión
+                    </button>
+                    <button *ngIf="auth.isLogged()" type="button" class="btn btn-light">
+                        <i class="bi-person-circle"></i>
+                    </button>
+                    <button *ngIf="auth.isLogged()" (click)="logout()" type="button" class="btn btn-light">
+                        Salir
                     </button>
                 </a>
             </ul>
@@ -59,14 +65,14 @@
                     </div>
                     <form>
                         <div class="mb-3 text-start">
-                            <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <label for="userName" class="form-label">Correo electronico</label>
+                            <input [(ngModel)]="userName" name="userName" type="email" class="form-control" id="userName" placeholder="">
                         </div>
                         <div class="mb-3 text-start">
-                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input [(ngModel)]="password" name="password" type="password" class="form-control" id="password">
                         </div>
-                        <button type="submit" class="btn btn-lg btn-primary">Iniciar Sesión</button>
+                        <button type="submit" class="btn btn-lg btn-primary" (click)="login(this.userName, this.password)" [disabled]="!this.userName || !this.password" data-bs-dismiss="modal" aria-label="Close">Iniciar Sesión</button>
                         <!--
                         <div class="mt-2">
                             <small class="text-muted"><a routerLink="/forgot-password">¿Has olvidado tu contraseña?</a></small>
@@ -78,7 +84,7 @@
                 <div class="text-center mt-3 mx-auto mb-4">
 
                     <p class="card-text">¿No tienes una cuenta aún?</p>
-                    <small class="text-muted"><a data-bs-toggle="modal" data-bs-target="#registromodal" class="link">Crea una ahora mismo</a></small>
+                    <small class="text-muted"><a routerLink="/register" data-bs-dismiss="modal" aria-label="Close" class="link">Crea una ahora mismo</a></small>
 
                 </div>
             </div>

@@ -1,0 +1,6 @@
+{
+    "url" : "https://apirotonda.azurewebsites.net/",
+    "auth" : {
+        "endpoint" : "api/users/login"
+    }
+}
