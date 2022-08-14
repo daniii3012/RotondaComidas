@@ -16,6 +16,12 @@ import { AdminRestaurantComponent } from './pages/admin/admin-restaurant/admin-r
 import { AdminIngredientComponent } from './pages/admin/admin-ingredient/admin-ingredient.component';
 import { AdminProductComponent } from './pages/admin/admin-product/admin-product.component';
 import { AdminMenuComponent } from './pages/admin/admin-menu/admin-menu.component';
+import { CarouselComponent } from './components/home/carousel/carousel.component';
+import { ItemCategoriesComponent } from './components/home/item-categories/item-categories.component';
+import { RestaurantsComponent } from './pages/restaurants/restaurants.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { ProductComponent } from './pages/products/product/product.component';
+import { RestaurantComponent } from './pages/restaurants/restaurant/restaurant.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,13 @@ import { AdminMenuComponent } from './pages/admin/admin-menu/admin-menu.componen
     AdminRestaurantComponent,
     AdminIngredientComponent,
     AdminProductComponent,
-    AdminMenuComponent
+    AdminMenuComponent,
+    CarouselComponent,
+    ItemCategoriesComponent,
+    RestaurantsComponent,
+    ProductsComponent,
+    ProductComponent,
+    RestaurantComponent
   ],
   imports: [
     BrowserModule,

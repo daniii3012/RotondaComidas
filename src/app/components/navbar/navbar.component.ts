@@ -13,8 +13,12 @@ export class NavbarComponent implements OnInit {
   userName: string;
   password: string;
 
-  errorMsg: string;
+  errorMsg: string = "Correo o contraseña incorrectas";
   showError: Boolean = false;
+
+  loading: boolean = false;
+
+  tokenExpiration: any;
 
   constructor(
     public auth: AuthService
@@ -24,6 +28,7 @@ export class NavbarComponent implements OnInit {
   }
 
   login(userName: string, password: string){
+    this.loading = true;
     this.credentials = {
       "email" : userName,
       "password" : password
@@ -31,14 +36,15 @@ export class NavbarComponent implements OnInit {
 
     this.auth.login(this.credentials).subscribe(
       user => {
-        this.auth.setAuthState(user)
-        this.showError = false
-        console.log(user)
+        this.loading = false;
+        this.auth.setAuthState(user);
+        this.showError = false;
+        console.log(user);
       },
       error => {
-        this.errorMsg = error
-        this.showError = true
-        this.password = ''
+        this.loading = false;
+        this.showError = true;
+        this.password = '';
       }
     )
   }

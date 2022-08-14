@@ -1,6 +1,13 @@
 {
-    "url" : "https://apirotonda.azurewebsites.net/",
-    "auth" : {
-        "endpoint" : "api/users/login"
+    "url": "https://apirotonda.azurewebsites.net/",
+    "auth": {
+        "endpoint": "api/users/login"
+    },
+    "register": {
+        "endpoint": "api/users/registrar",
+        "clientData": "api/clientes"
+    },
+    "clients": {
+        "endpoint": "api/clientes"
     }
 }

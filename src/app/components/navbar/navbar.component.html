@@ -12,6 +12,9 @@
                 <li routerLinkActive="active" class="nav-item">
                     <a class="nav-link" routerLink="/admin">Admin</a>
                 </li>
+                <li routerLinkActive="active" class="nav-item">
+                    <a class="nav-link" routerLink="/admin"></a>
+                </li>
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
@@ -63,7 +66,7 @@
                             <button type="button" class="btn-close btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                     </div>
-                    <form>
+                    <form *ngIf="!auth.isLogged()">
                         <div class="mb-3 text-start">
                             <label for="userName" class="form-label">Correo electronico</label>
                             <input [(ngModel)]="userName" name="userName" type="email" class="form-control" id="userName" placeholder="">
@@ -72,75 +75,32 @@
                             <label for="password" class="form-label">Contraseña</label>
                             <input [(ngModel)]="password" name="password" type="password" class="form-control" id="password">
                         </div>
-                        <button type="submit" class="btn btn-lg btn-primary" (click)="login(this.userName, this.password)" [disabled]="!this.userName || !this.password" data-bs-dismiss="modal" aria-label="Close">Iniciar Sesión</button>
+                        <div *ngIf="showError" class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ errorMsg }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <button *ngIf="!loading" type="submit" class="btn btn-lg btn-primary" (click)="login(this.userName, this.password)" [disabled]="!this.userName || !this.password">Iniciar Sesión</button>
+                        <button *ngIf="loading" type="button" class="btn btn-default btn-block mt-3" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span class="sr-only">Loading...</span>
+                        </button>
                         <!--
                         <div class="mt-2">
                             <small class="text-muted"><a routerLink="/forgot-password">¿Has olvidado tu contraseña?</a></small>
                         </div>
                         -->
                     </form>
+                    <div *ngIf="auth.isLogged()">
+                        <button type="submit" class="btn btn-lg btn-primary" data-bs-dismiss="modal" aria-label="Close">Continuar</button>
+                    </div>
                 </div>
 
-                <div class="text-center mt-3 mx-auto mb-4">
+                <div *ngIf="!auth.isLogged()" class="text-center mt-3 mx-auto mb-4">
 
                     <p class="card-text">¿No tienes una cuenta aún?</p>
                     <small class="text-muted"><a routerLink="/register" data-bs-dismiss="modal" aria-label="Close" class="link">Crea una ahora mismo</a></small>
 
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="registromodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-
-                <div class="text-center mt-3 mx-auto" style="max-width: 50rem; border: 0;">
-
-                    <div class="row">
-                        <div class="col-2">
-
-                        </div>
-                        <div class="col-8">
-                            <h1>RotondaComidas</h1>
-                        </div>
-                        <div class="col-2 p-2">
-                            <button type="button" class="btn-close btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                    </div>
-                    <form>
-                        <div class="mb-3 text-start">
-                            <label for="exampleFormControlInput1" class="form-label">Nombres</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="exampleFormControlInput1" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="exampleFormControlInput1" class="form-label">Confirmar Correo electronico</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="exampleInputPassword1" class="form-label">Confirmar Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <button type="submit" class="btn btn-lg btn-primary mb-4">Registrarse</button>
-                    </form>
-                </div>
-
             </div>
         </div>
     </div>

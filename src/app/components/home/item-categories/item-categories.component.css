@@ -1,0 +1,19 @@
+.list-group-item {
+    border-left: 0;
+    border-right: 0;
+}
+
+.btn-custom {
+    color: #1d1d1d;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.btn-custom:hover {
+    color: #2e2e2e;
+    background-color: rgba(0, 0, 0, 0.055);
+}
+/*
+img {
+    border: 1px dashed #2e2e2e;
+}
+*/

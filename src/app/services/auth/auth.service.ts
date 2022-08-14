@@ -13,15 +13,14 @@ export class AuthService {
 
   private user = JSON.parse(localStorage.getItem('user')!) || null;
   private userToken = JSON.parse(localStorage.getItem('userToken')!) || null;
-  
-  /*
+  private tokenExpiration = JSON.parse(localStorage.getItem('tokenExpiration')!) || null;
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      Authorization: `Bearer ${service.token}`
+      Authorization: `Bearer ${this.userToken}`
     })
   };
-  */
 
   constructor(private http: HttpClient) { }
 
@@ -36,34 +35,58 @@ export class AuthService {
     
     this.user = user;
     this.userToken = user.token;
+    this.tokenExpiration = user.expiration;
 
     localStorage.setItem('authenticated', 'true');
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('userToken', JSON.stringify(user.token));
+    localStorage.setItem('tokenExpiration', JSON.stringify(user.expiration));
   }
 
-  logout(){
+  logout() {
     this.authState = false;
     
     this.user = null;
     this.userToken = null;
+    this.tokenExpiration = null;
 
     localStorage.removeItem('authenticated');
     localStorage.removeItem('user');
     localStorage.removeItem('userToken');
+    localStorage.removeItem('tokenExpiration');
   }
 
-  isLogged(){
-    return JSON.parse(localStorage.getItem('authenticated') || this.authState.toString());
+  isLogged() {
+    let expirationDate = new Date(this.tokenExpiration);
+    let currentDate = new Date();
+    let expired = false;
+    if (expirationDate < currentDate){
+      expired = true;
+    } else {
+      expired = false;
+    }
+    return (JSON.parse(localStorage.getItem('authenticated') || this.authState.toString()) && !expired)
   }
 
   
-  getUser(){
+  getUser() {
     return this.user;
   }
 
-  getUserToken(){
+  getUserToken() {
     return this.userToken;
+  }
+
+  register(data: any) {
+    return this.http.post(service.url + service.register.endpoint, data).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  clientData(data: any) {
+    return this.http.post(service.url + service.register.clientData, data, this.httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {

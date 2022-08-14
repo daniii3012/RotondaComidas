@@ -1,1 +1,50 @@
-<p>register works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="card m-3">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Registro</h3>
+                    <div class="card-text">
+                        <form>
+                            <div class="mb-3 text-start">
+                                <label for="name" class="form-label">Nombres y Apellidos</label>
+                                <input [(ngModel)]="name" name="name" type="text" class="form-control" id="name" placeholder="">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="document" class="form-label">Documento de identificación</label>
+                                <input [(ngModel)]="document" name="document" type="text" class="form-control" id="document" placeholder="">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="address" class="form-label">Direccion de residencia</label>
+                                <input [(ngModel)]="address" name="address" type="text" class="form-control" id="address" placeholder="">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="city" class="form-label">Ciudad de residencia</label>
+                                <input [(ngModel)]="city" name="city" type="text" class="form-control" id="city" placeholder="">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="email" class="form-label">Correo electronico</label>
+                                <input [(ngModel)]="email" name="email" type="email" class="form-control" id="email">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input [(ngModel)]="password" name="password" type="password" class="form-control" id="password">
+                            </div>
+                            <div class="text-center">
+                                <div *ngIf="showError" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ errorMsg }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                <button *ngIf="!loading" type="submit" class="btn btn-lg btn-primary" (click)="registerUser(this.email, this.password)" [disabled]="!this.name || !this.document || !this.address || !this.city || !this.email || !this.password">Registrarse</button>
+                                <button *ngIf="loading" type="button" class="btn btn-default btn-block mt-3" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    <span class="sr-only">Loading...</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
