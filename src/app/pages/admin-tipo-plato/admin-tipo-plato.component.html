@@ -3,12 +3,12 @@
         <div class="col">
             <div class="card shadow-sm border-0">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Ingredientes</h5>
+                    <h5 class="card-title">Tipo de plato</h5>
                     <p class="card-text">
                         <button type="button" routerLink="/admin" class="btn btn-secondary">Regresar</button>
                     </p>
                     <p class="card-text">
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addIngredient">Añadir Ingrediente</button>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addTipo">Añadir tipo de plato</button>
                     </p>
                 </div>
             </div>
@@ -18,51 +18,46 @@
 
 <div class="container">
     <div class="row m-2">
-        <div *ngFor="let ingredient of ingredientes" class="col-4">
+        <div *ngFor="let tipo of tipos" class="col-4">
             <div class="card shadow-sm border-0 m-2">
                 <div class="card-body text-center">
-                    <h5 class="card-title">{{ ingredient.nombre }}</h5>
                     <div class="row card-text">
                         <div class="col">
                             ID:
                         </div>
                         <div class="col">
-                            {{ ingredient.id }}
+                            {{ tipo.id }}
                         </div>
                     </div>
                     <div class="row card-text">
                         <div class="col">
-                            Costo Unitario:
+                            Tipo:
                         </div>
                         <div class="col">
-                            {{ ingredient.costoUnitario }}
+                            {{ tipo.tipo }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Modal para añadir un nuevo producto -->
-        <div class="modal fade" id="addIngredient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal para añadir un nuevo tipo de plato -->
+        <div class="modal fade" id="addTipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title fw-bold" id="editProduct">Añadir nuevo producto</h4>
+                        <h4 class="modal-title fw-bold" id="editProduct">Añadir nuevo tipo de plato</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3 text-start">
-                            <label for="ingredientName" class="form-label">Nombre del producto</label>
-                            <input type="text" class="form-control" id="ingredientName" [(ngModel)]="nombre">
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="ingredientCost" class="form-label">Costo</label>
-                            <input type="number" class="form-control" id="ingredientCost" [(ngModel)]="costoUnitario">
+                            <label for="tipo" class="form-label">Tipo de plato</label>
+                            <input type="text" class="form-control" id="tipo" [(ngModel)]="tipo">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button (click)="reset()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button (click)="addIngredient()" type="button" class="btn btn-primary" [disabled]="!nombre || !costoUnitario">Añadir</button>
+                        <button (click)="addTipo()" type="button" class="btn btn-primary" [disabled]="!tipo">Añadir</button>
                     </div>
                 </div>
             </div>

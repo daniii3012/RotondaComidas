@@ -95,7 +95,7 @@
                     </div>
                 </div>
 
-                <div *ngIf="!auth.isLogged()" class="text-center mt-3 mx-auto mb-4">
+                <div *ngIf="!auth.isLogged() && !loading" class="text-center mt-3 mx-auto mb-4">
 
                     <p class="card-text">¿No tienes una cuenta aún?</p>
                     <small class="text-muted"><a routerLink="/register" data-bs-dismiss="modal" aria-label="Close" class="link">Crea una ahora mismo</a></small>

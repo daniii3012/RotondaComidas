@@ -9,5 +9,14 @@
     },
     "clients": {
         "endpoint": "api/clientes"
+    },
+    "restaurants": {
+        "endpoint": "api/restaurante"
+    },
+    "ingredients": {
+        "endpoint": "api/ingredientes"
+    },
+    "tipoPlato": {
+        "endpoint": "api/tipoPlato"
     }
 }

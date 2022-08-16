@@ -9,6 +9,9 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
+  registro1: boolean = false;
+  registro2: boolean = false;
+
   register: any;
   clientData: any;
 
@@ -30,6 +33,7 @@ export class RegisterComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.registro1 = true;
   }
 
   registerUser(email: string, password: string) {
@@ -41,11 +45,15 @@ export class RegisterComponent implements OnInit {
     
     this.auth.register(this.register).subscribe(
       data => {
+        this.registro1 = false;
+        this.registro2 = true;
+        this.loading = false;
         this.showError = false;
-        this.clientDataRegister(this.name, this.document, this.address, this.city, email);
         this.auth.setAuthState(data);
       },
       error => {
+        this.registro1 = true;
+        this.registro2 = false;
         this.loading = false;
         this.showError = true;
         this.email = '';
@@ -71,6 +79,9 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error => {
+        this.loading = false;
+        this.showError = true;
+        console.log(error);
         if(error.status == undefined) {
           this.loading = false;
           this.showError = false;

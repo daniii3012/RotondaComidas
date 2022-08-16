@@ -3,15 +3,105 @@
         <div class="col">
             <div class="card shadow-sm border-0">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Productos</h5>
+                    <h5 class="card-title">Platos</h5>
                     <p class="card-text">
                         <button type="button" routerLink="/admin" class="btn btn-secondary">Regresar</button>
                     </p>
                     <p class="card-text">
-                        <button type="button" routerLink="/admin" class="btn btn-secondary">Añadir Producto</button>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addPlato">Añadir Plato</button>
                     </p>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row m-2">
+        <div *ngFor="let plato of platos" class="col-4">
+            <div class="card shadow-sm border-0 m-2">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ plato.nombrePlato }}</h5>
+                    <div *ngFor="let ingrediente of plato.ingredientes" class="row card-text">
+                        <div class="col">
+                            Ingredientes:
+                        </div>
+                        <div class="col">
+                            {{ ingrediente.nombre }}
+                        </div>
+                    </div>
+                    <div class="row card-text">
+                        <div class="col">
+                            Tipo de Plato:
+                        </div>
+                        <div class="col">
+                            {{ plato.fkTipo }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para añadir un nuevo producto -->
+        <div class="modal fade" id="addPlato" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title fw-bold" id="editProduct">Añadir nuevo plato</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3 text-start">
+                            <label for="platoName" class="form-label">Nombre del plato</label>
+                            <input type="text" class="form-control" id="platoName" [(ngModel)]="nombrePlato">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="platoFoto" class="form-label">Foto</label>
+                            <input type="text" class="form-control" id="platoFoto" [(ngModel)]="foto">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label>Añadir ingredientes</label>
+                            <ul class="list-group">
+                                <li *ngFor="let ingredientes of ingredientesLista" class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            {{ ingredientes.nombre }}
+                                        </div>
+                                        <div class="col-auto">
+                                            <button (click)="addIngredientes(ingredientes.id, ingredientes.nombre)" type="button" class="btn btn-success"><i class="bi-plus-circle"></i></button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label>Ingredientes</label>
+                            <ul class="list-group">
+                                <li *ngFor="let ingrediente of ingredientesFake" class="list-group-item">{{ ingrediente }}</li>
+                            </ul>
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="platoTipo" class="form-label">Tipo de plato</label>
+                            <select [(ngModel)]="tipo" class="form-select" aria-label="Default select example">
+                                <option disabled selected>Elegir tipo de plato</option>
+                                <option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.tipo }}</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="platoTipo" class="form-label">Restaurante</label>
+                            <select [(ngModel)]="idRestaurante" class="form-select" aria-label="Default select example">
+                                <option disabled selected>Elegir tipo de plato</option>
+                                <option *ngFor="let restaurante of restaurantes" [value]="restaurante.id">{{ restaurante.nombre }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button (click)="reset()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button (click)="addPlato()" type="button" class="btn btn-primary" [disabled]="!nombrePlato || !foto || !ingredientes || !tipo || !idRestaurante">Añadir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

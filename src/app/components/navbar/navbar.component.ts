@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(localStorage.getItem('userToken'))
   }
 
   login(userName: string, password: string){

@@ -1,0 +1,78 @@
+<div class="container-fluid my-3">
+    <div class="row m-2">
+        <div class="col">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Clientes</h5>
+                    <p class="card-text">
+                        <button type="button" routerLink="/admin" class="btn btn-secondary">Regresar</button>
+                    </p>
+                    <p class="card-text">
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addRestaurant" disabled>Clientes</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row m-2">
+        <div *ngFor="let user of users" class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0 m-2">
+                <div class="card-body">
+                    <h5 class="card-title text-center">
+                        {{ user.cedula }}
+                        <!--
+                        <button type="button" class="btn btn-warning mx-1" disabled><i class="bi-pencil-fill"></i></button>
+                        <button type="button" class="btn btn-outline-danger mx-1" disabled><i class="bi-trash-fill"></i></button>
+                        -->
+                    </h5>
+
+
+                    <div class="row card-text">
+                        <div class="col">
+                            Nombre:
+                        </div>
+                        <div class="col">
+                            {{ user.nombre }}
+                        </div>
+                    </div>
+                    <div class="row card-text">
+                        <div class="col">
+                            Cedula:
+                        </div>
+                        <div class="col">
+                            {{ user.cedula }}
+                        </div>
+                    </div>
+                    <div class="row card-text">
+                        <div class="col">
+                            Direccion:
+                        </div>
+                        <div class="col">
+                            {{ user.direccion }}
+                        </div>
+                    </div>
+                    <div class="row card-text">
+                        <div class="col">
+                            Ciudad:
+                        </div>
+                        <div class="col">
+                            {{ user.ciudad }}
+                        </div>
+                    </div>
+                    <div class="row card-text">
+                        <div class="col">
+                            Correo:
+                        </div>
+                        <div class="col">
+                            {{ user.correo }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

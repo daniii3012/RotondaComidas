@@ -12,7 +12,13 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   allClients() {
-    return this.http.get(service.url + service).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: `Bearer ${localStorage.getItem('userToken')?.replace(/['"]+/g, '')}`
+      })
+    };
+    return this.http.get(service.url + service.clients.endpoint, httpOptions).pipe(
       catchError(this.handleError)
     );
   }

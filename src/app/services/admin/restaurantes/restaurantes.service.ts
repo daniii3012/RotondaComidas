@@ -1,19 +1,36 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { default as service } from '../../services.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantesService {
 
-  restaurantes = "../../../assets/json/restaurantes.json";
-
   constructor(private http: HttpClient) { }
 
-  getRestaurantes() {
-    return this.http.get(this.restaurantes).pipe(
+  allRestaurants() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: `Bearer ${localStorage.getItem('userToken')?.replace(/['"]+/g, '')}`
+      })
+    };
+    return this.http.get(service.url + service.restaurants.endpoint, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  addRestaurant(data: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: `Bearer ${localStorage.getItem('userToken')?.replace(/['"]+/g, '')}`
+      })
+    };
+    return this.http.post(service.url + service.restaurants.endpoint, data, httpOptions).pipe(
       catchError(this.handleError)
     );
   }

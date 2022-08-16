@@ -7,30 +7,30 @@ import { default as service } from '../../services.json';
 @Injectable({
   providedIn: 'root'
 })
-export class IngredientesService {
+export class TipoPlatoService {
 
   constructor(private http: HttpClient) { }
 
-  allIngredients() {
+  allTipos() {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         Authorization: `Bearer ${localStorage.getItem('userToken')?.replace(/['"]+/g, '')}`
       })
     };
-    return this.http.get(service.url + service.ingredients.endpoint, httpOptions).pipe(
+    return this.http.get(service.url + service.tipoPlato.endpoint, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
 
-  addIngredient(data: any) {
+  addTipo(data: any) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         Authorization: `Bearer ${localStorage.getItem('userToken')?.replace(/['"]+/g, '')}`
       })
     };
-    return this.http.post(service.url + service.ingredients.endpoint, data, httpOptions).pipe(
+    return this.http.post(service.url + service.tipoPlato.endpoint, data, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -49,4 +49,5 @@ export class IngredientesService {
     // return an observable with a user-facing error message
     return throwError(error.error);
   };
+
 }

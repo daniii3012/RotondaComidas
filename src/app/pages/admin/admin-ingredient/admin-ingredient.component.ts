@@ -11,9 +11,9 @@ export class AdminIngredientComponent implements OnInit {
   ingredientes: any;
 
   nombre: string = "";
-  tipo: string = "";
   costoUnitario: number = 0;
-  plato: string = "";
+
+  datos: any;
 
   constructor(
     private ingredientesService: IngredientesService
@@ -24,7 +24,7 @@ export class AdminIngredientComponent implements OnInit {
   }
 
   getIngredientes() {
-    this.ingredientesService.getIngredientes().subscribe(
+    this.ingredientesService.allIngredients().subscribe(
       data => {
         this.ingredientes = data;
         console.log(this.ingredientes);
@@ -32,12 +32,24 @@ export class AdminIngredientComponent implements OnInit {
     )
   }
 
-  // Funcion temporal
+  addIngredient() {
+    this.datos = {
+      "nombre": this.nombre,
+      "costoUnitario": this.costoUnitario
+    }
+    this.ingredientesService.addIngredient(this.datos).subscribe(
+      () => {
+        window.location.reload();
+      },
+      error => {
+        window.location.reload();
+      }
+    )
+  }
+
   reset() {
     this.nombre = "";
-    this.tipo = "";
     this.costoUnitario = 0;
-    this.plato = "";
   }
 
 }

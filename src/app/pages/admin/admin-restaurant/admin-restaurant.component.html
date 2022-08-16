@@ -18,16 +18,12 @@
 
 <div class="container">
     <div class="row m-2">
-        <div *ngFor="let restaurant of restaurantes.restaurantes" class="col-4">
+        <div *ngFor="let restaurant of restaurantes" class="col-4">
             <div class="card shadow-sm border-0 m-2">
                 <div class="card-body">
                     <h5 class="card-title text-center">
                         {{ restaurant.nombre }}
-                        <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" attr.data-bs-target="#edit{{ restaurant.id }}"><i class="bi-pencil-fill"></i></button>
-                        <button type="button" class="btn btn-outline-danger mx-1"><i class="bi-trash-fill"></i></button>
                     </h5>
-                        
-                    
                     <div class="row card-text">
                         <div class="col">
                             Nit:
@@ -46,69 +42,15 @@
                     </div>
                     <div class="row card-text">
                         <div class="col">
-                            Ciudad: 
+                            Ciudad:
                         </div>
                         <div class="col">
                             {{ restaurant.ciudad }}
                         </div>
                     </div>
-
-<div>
-    <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              Menús
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
-        </div>
-      </div>
-</div>
-
                 </div>
             </div>
 
-            <!-- Modal para editar un producto -->
-
-            <div class="modal fade" id="edit{{ restaurant.id }}" tabindex="-1" aria-labelledby="editProduct" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title fw-bold" id="editProduct">Editando Restaurante</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-
-                            <div class="mb-3 text-start">
-                                <label for="restaurantName" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="restaurantName" [(ngModel)]="restaurant.nombre">
-                            </div>
-                            <div class="mb-3 text-start">
-                                <label for="restaurantNit" class="form-label">Nit</label>
-                                <input type="text" class="form-control" id="restaurantNit" [(ngModel)]="restaurant.nit">
-                            </div>
-                            <div class="mb-3 text-start">
-                                <label for="restaurantAddress" class="form-label">Dirección</label>
-                                <input type="text" class="form-control" id="restaurantAddress" [(ngModel)]="restaurant.direccion">
-                            </div>
-                            <div class="mb-3 text-start">
-                                <label for="restaurantCity" class="form-label">Ciudad</label>
-                                <input type="text" class="form-control" id="restaurantCity" [(ngModel)]="restaurant.ciudad">
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-->
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- Modal para añadir un nuevo producto -->
@@ -125,6 +67,10 @@
                             <input type="text" class="form-control" id="restaurantName" [(ngModel)]="nombre">
                         </div>
                         <div class="mb-3 text-start">
+                            <label for="restaurantPhoto" class="form-label">Foto</label>
+                            <input type="text" class="form-control" id="restaurantPhoto" [(ngModel)]="foto">
+                        </div>
+                        <div class="mb-3 text-start">
                             <label for="restaurantNit" class="form-label">Nit</label>
                             <input type="text" class="form-control" id="restaurantNit" [(ngModel)]="nit">
                         </div>
@@ -139,7 +85,7 @@
                     </div>
                     <div class="modal-footer">
                         <button (click)="reset()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Añadir</button>
+                        <button (click)="addRestaurant()" type="button" class="btn btn-primary" [disabled]="!nombre || !foto || !nit || !direccion || !ciudad">Añadir</button>
                     </div>
                 </div>
             </div>

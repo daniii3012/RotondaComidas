@@ -22,6 +22,8 @@ import { RestaurantsComponent } from './pages/restaurants/restaurants.component'
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductComponent } from './pages/products/product/product.component';
 import { RestaurantComponent } from './pages/restaurants/restaurant/restaurant.component';
+import { AdminClientsComponent } from './pages/admin/admin-clients/admin-clients.component';
+import { AdminTipoPlatoComponent } from './pages/admin-tipo-plato/admin-tipo-plato.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { RestaurantComponent } from './pages/restaurants/restaurant/restaurant.c
     RestaurantsComponent,
     ProductsComponent,
     ProductComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    AdminClientsComponent,
+    AdminTipoPlatoComponent
   ],
   imports: [
     BrowserModule,

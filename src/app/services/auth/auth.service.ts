@@ -84,7 +84,13 @@ export class AuthService {
   }
 
   clientData(data: any) {
-    return this.http.post(service.url + service.register.clientData, data, this.httpOptions).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: `Bearer ${this.userToken}`
+      })
+    };
+    return this.http.post(service.url + service.register.clientData, data, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
