@@ -33,7 +33,7 @@
                     <button *ngIf="!auth.isLogged()" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#loginModal">
                         Iniciar Sesión
                     </button>
-                    <button *ngIf="auth.isLogged()" type="button" class="btn btn-light">
+                    <button *ngIf="auth.isLogged()" type="button" class="btn btn-light mx-2" routerLink="/user">
                         <i class="bi-person-circle"></i>
                     </button>
                     <button *ngIf="auth.isLogged()" (click)="logout()" type="button" class="btn btn-light">
@@ -91,7 +91,7 @@
                         -->
                     </form>
                     <div *ngIf="auth.isLogged()">
-                        <button type="submit" class="btn btn-lg btn-primary" data-bs-dismiss="modal" aria-label="Close">Continuar</button>
+                        <button (click)="continuar()" type="submit" class="btn btn-lg btn-primary" data-bs-dismiss="modal" aria-label="Close">Continuar</button>
                     </div>
                 </div>
 

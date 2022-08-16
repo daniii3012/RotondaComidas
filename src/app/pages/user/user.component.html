@@ -1,1 +1,53 @@
-<p>user works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-sm-10 col-lg-8">
+            <div class="card border-0 shadow m-3 p-3">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Cliente {{ user.cedula }}</h3>
+                    <div class="card-text">
+                        <div class="row card-text">
+                            <div class="col">
+                                Nombre:
+                            </div>
+                            <div class="col">
+                                {{ user.nombre }}
+                            </div>
+                        </div>
+                        <div class="row card-text">
+                            <div class="col">
+                                Cedula:
+                            </div>
+                            <div class="col">
+                                {{ user.cedula }}
+                            </div>
+                        </div>
+                        <div class="row card-text">
+                            <div class="col">
+                                Direccion:
+                            </div>
+                            <div class="col">
+                                {{ user.direccion }}
+                            </div>
+                        </div>
+                        <div class="row card-text">
+                            <div class="col">
+                                Ciudad:
+                            </div>
+                            <div class="col">
+                                {{ user.ciudad }}
+                            </div>
+                        </div>
+                        <div class="row card-text">
+                            <div class="col">
+                                Correo:
+                            </div>
+                            <div class="col">
+                                {{ user.correo }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

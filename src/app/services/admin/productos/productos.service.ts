@@ -18,7 +18,19 @@ export class ProductosService {
         Authorization: `Bearer ${localStorage.getItem('userToken')?.replace(/['"]+/g, '')}`
       })
     };
-    return this.http.get(service.url + "api/" + idRestaurante + "platos", httpOptions).pipe(
+    return this.http.get(service.url + "api/" + idRestaurante + "/platos", httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getPlato(idRestaurante: number, idPlato: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: `Bearer ${localStorage.getItem('userToken')?.replace(/['"]+/g, '')}`
+      })
+    };
+    return this.http.get(service.url + "api/" + idRestaurante + "/platos/" + idPlato, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -30,7 +42,7 @@ export class ProductosService {
         Authorization: `Bearer ${localStorage.getItem('userToken')?.replace(/['"]+/g, '')}`
       })
     };
-    return this.http.post(service.url + "api/" + idRestaurante + "platos", data, httpOptions).pipe(
+    return this.http.post(service.url + "api/" + idRestaurante + "/platos", data, httpOptions).pipe(
       catchError(this.handleError)
     );
   }

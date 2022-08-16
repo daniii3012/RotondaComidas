@@ -23,6 +23,18 @@ export class UserService {
     );
   }
 
+  getClient() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: `Bearer ${localStorage.getItem('userToken')?.replace(/['"]+/g, '')}`
+      })
+    };
+    return this.http.get(service.url + service.clients.client, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

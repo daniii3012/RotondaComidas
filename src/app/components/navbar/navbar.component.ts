@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -21,11 +22,11 @@ export class NavbarComponent implements OnInit {
   tokenExpiration: any;
 
   constructor(
-    public auth: AuthService
+    public auth: AuthService,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('userToken'))
   }
 
   login(userName: string, password: string){
@@ -52,6 +53,11 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     this.auth.logout();
+  }
+
+  continuar() {
+    this.route.navigate(['/home']);
+    window.location.reload();
   }
 
 }

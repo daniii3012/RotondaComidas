@@ -8,7 +8,8 @@
         "clientData": "api/clientes"
     },
     "clients": {
-        "endpoint": "api/clientes"
+        "endpoint": "api/clientes",
+        "client": "api/clientes/clienteLogin"
     },
     "restaurants": {
         "endpoint": "api/restaurante"

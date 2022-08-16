@@ -15,15 +15,17 @@ import { RestaurantComponent } from './pages/restaurants/restaurant/restaurant.c
 import { RestaurantsComponent } from './pages/restaurants/restaurants.component';
 import { LoginComponent } from './pages/user/login/login.component';
 import { RegisterComponent } from './pages/user/register/register.component';
+import { UserComponent } from './pages/user/user.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'restaurants', component: RestaurantsComponent },
   { path: 'restaurant/:id', component: RestaurantComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'product/:id', component: ProductComponent },
+  { path: 'restaurant/:id/product/:id', component: ProductComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'admin-clients', component: AdminClientsComponent, canActivate: [AuthGuard] },
   { path: 'admin-restaurant', component: AdminRestaurantComponent, canActivate: [AuthGuard] },

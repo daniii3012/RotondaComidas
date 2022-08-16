@@ -23,6 +23,18 @@ export class RestaurantesService {
     );
   }
 
+  restaurantByNit(nit: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: `Bearer ${localStorage.getItem('userToken')?.replace(/['"]+/g, '')}`
+      })
+    };
+    return this.http.get(service.url + service.restaurants.endpoint + "/" + nit, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   addRestaurant(data: any) {
     const httpOptions = {
       headers: new HttpHeaders({

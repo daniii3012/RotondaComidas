@@ -37,10 +37,13 @@ export class AuthService {
     this.userToken = user.token;
     this.tokenExpiration = user.expiration;
 
+    let cart;
+
     localStorage.setItem('authenticated', 'true');
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('userToken', JSON.stringify(user.token));
     localStorage.setItem('tokenExpiration', JSON.stringify(user.expiration));
+    localStorage.setItem('cart', JSON.stringify(cart));
   }
 
   logout() {
@@ -54,6 +57,7 @@ export class AuthService {
     localStorage.removeItem('user');
     localStorage.removeItem('userToken');
     localStorage.removeItem('tokenExpiration');
+    localStorage.removeItem('cart');
   }
 
   isLogged() {
