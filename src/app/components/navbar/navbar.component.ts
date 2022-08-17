@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
+    private cartService: CartService,
     private route: Router
   ) { }
 
@@ -58,6 +60,11 @@ export class NavbarComponent implements OnInit {
   continuar() {
     this.route.navigate(['/home']);
     window.location.reload();
+  }
+
+  boton() {
+    this.cartService.addToCart({"producto": 455, "id": "xd"});
+    console.log(this.cartService.getItems())
   }
 
 }

@@ -37,7 +37,7 @@ export class AuthService {
     this.userToken = user.token;
     this.tokenExpiration = user.expiration;
 
-    let cart;
+    let cart: any = [];
 
     localStorage.setItem('authenticated', 'true');
     localStorage.setItem('user', JSON.stringify(user));
